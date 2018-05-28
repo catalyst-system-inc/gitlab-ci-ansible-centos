@@ -46,4 +46,8 @@ ADD ansible.cfg /etc/ansible/ansible.cfg
 # CIサーバーが国内なのでJP限定にする
 ADD fastestmirror.conf /etc/yum/pluginconf.d/fastestmirror.conf
 
+# AWS CLI使うことが多いので入れる
+RUN curl -kL https://bootstrap.pypa.io/get-pip.py | python
+RUN pip install awscli
+
 CMD ["/usr/sbin/init"]
