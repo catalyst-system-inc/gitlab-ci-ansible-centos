@@ -49,7 +49,5 @@ ADD fastestmirror.conf /etc/yum/pluginconf.d/fastestmirror.conf
 # AWS CLI使うことが多いので入れる
 RUN curl -kL https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install awscli
-# CI中にawscliでエラーが出たのでutf8を指定するように
-ADD sitecustomize.py /usr/lib/python2.7/site-packages/sitecustomize.py
 
 CMD ["/usr/sbin/init"]
