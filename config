@@ -1,0 +1,7 @@
+Host *
+  ForwardAgent yes
+  ServerAliveInterval 30
+  ServerAliveCountMax 5
+  GSSAPIAuthentication no
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null

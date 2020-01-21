@@ -1,8 +1,5 @@
 FROM centos:7
 
-# 作成者情報
-MAINTAINER toshi <toshi@toshi.click>
-
 # EPELを導入しておく + yum update + editor install
 RUN echo "include_only=.jp" >> /etc/yum/pluginconf.d/fastestmirror.conf && \
     yum -q clean all && \
@@ -63,7 +60,6 @@ RUN yum install -y golang && \
 # filelint入れる
 RUN go get -u github.com/synchro-food/filelint
 
-
 # ruby入れる
 RUN yum -y install make tar git wget gcc-c++ openssl-devel readline-devel gdbm-devel libffi-devel zlib-devel curl-devel procps autoconf sudo && yum -q clean all \
   && git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv \
@@ -85,5 +81,8 @@ RUN yum -y install make tar git wget gcc-c++ openssl-devel readline-devel gdbm-d
   && su -l root -c '/usr/local/rbenv/bin/rbenv install 2.6.1 -v' \
   && su -l root -c '/usr/local/rbenv/bin/rbenv rehash' \
   && su -l root -c '/usr/local/rbenv/bin/rbenv global 2.6.1'
+
+RUN mkdir /root/.ssh
+COPY config /root/.ssh/config
 
 CMD ["/usr/sbin/init"]
