@@ -81,6 +81,9 @@ RUN yum -y install make tar git wget gcc-c++ openssl-devel readline-devel gdbm-d
   && su -l root -c '/usr/local/rbenv/bin/rbenv install 2.6.1 -v' \
   && su -l root -c '/usr/local/rbenv/bin/rbenv rehash' \
   && su -l root -c '/usr/local/rbenv/bin/rbenv global 2.6.1'
+  
+# ansible-lint入れる
+RUN pip install ansible-lint
 
 RUN mkdir /root/.ssh
 COPY config /root/.ssh/config
