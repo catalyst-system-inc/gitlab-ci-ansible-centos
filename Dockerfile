@@ -13,10 +13,10 @@ RUN echo "include_only=.jp" >> /etc/yum/pluginconf.d/fastestmirror.conf && \
     yum -q clean all
 
 # set ENV
-ENV container docker \
-    LANG=ja_JP.UTF-8 \
-    LANGUAGE=ja_JP:ja \
-    LC_ALL=ja_JP.UTF-8
+ENV container docker
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:ja
+ENV LC_ALL ja_JP.UTF-8
 
 RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 && \
     echo 'LANG="ja_JP.UTF-8"' >  /etc/locale.conf && \
@@ -51,9 +51,9 @@ RUN yum install -y https://centos7.iuscommunity.org/ius-release.rpm && \
     yum -q clean all
 
 # go使いたいので入れる
-ENV GOROOT=/usr/lib/golang \
-    GOPATH=/usr/local \
-    PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+ENV GOROOT /usr/lib/golang
+ENV GOPATH /usr/local
+ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
 RUN yum install -y golang && \
     yum -q clean all
 
