@@ -30,7 +30,7 @@ RUN yum remove -y git \
     && yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-ExtUtils-MakeMaker \
     && wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.gz \
     && tar xvzf git-${GIT_VERSION}.tar.gz \
-    && cd git-${GIT_VERSION}
+    && cd git-${GIT_VERSION} \
     && make prefix=/usr/local all \
     && make prefix=/usr/local install
 
