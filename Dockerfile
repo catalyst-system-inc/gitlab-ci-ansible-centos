@@ -9,7 +9,7 @@ RUN echo "include_only=.jp" >> /etc/yum/pluginconf.d/fastestmirror.conf && \
     sed -i '/^override_install_langs=/d' /etc/yum.conf && \
     yum reinstall -y -q glibc-common && \
     yum -y -q groupinstall "Development Tools" && \
-    yum install -y -q vim kbd ibus-kkc vlgothic-* && \
+    yum install -y -q wget vim kbd ibus-kkc vlgothic-* && \
     yum -q clean all
 
 # set ENV
