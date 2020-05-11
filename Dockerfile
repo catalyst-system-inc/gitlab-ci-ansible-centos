@@ -17,12 +17,22 @@ ENV container docker
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
 ENV LC_ALL ja_JP.UTF-8
+ENV GIT_VERSION 2.26.2
 
 RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 && \
     echo 'LANG="ja_JP.UTF-8"' >  /etc/locale.conf && \
     echo 'ZONE="Asia/Tokyo"' > /etc/sysconfig/clock && \
     unlink /etc/localtime && \
     ln -s /usr/share/zoneinfo/Japan /etc/localtime
+
+WORKDIR /usr/local/src
+RUN yum remove -y git \
+    && yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-ExtUtils-MakeMaker \
+    && wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.gz \
+    && tar xvzf git-${GIT_VERSION}.tar.gz \
+    && cd git-${GIT_VERSION}
+    && make prefix=/usr/local all \
+    && make prefix=/usr/local install
 
 RUN yum install -y ansible systemd libselinux-python selinux-policy && yum clean all
 
